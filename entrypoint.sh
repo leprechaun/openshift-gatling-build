@@ -50,7 +50,8 @@ if [ -n "${SOURCE_REF}" ]; then
   set +x
 
   if [[ -v $GO_SUSERNAME ]]; then
-    for file in $(find ./results/ -type f -not -iwholename '*.git*'); do
+    cd /opt/gatling/results/
+    for file in $(find ./ -type f -not -iwholename '*.git*'); do
       echo curl -k -v -u $GO_USERNAME:$GO_PASSWORD $GO_SERVER_URL/files/$GO_PIPELINE_NAME/$GO_PIPELINE_COUNTER/$GO_STAGE_NAME/$GO_STAGE_COUNTER/$GO_JOB_NAME/$file -F file=@$file -H 'Config:true'
     done
   fi
