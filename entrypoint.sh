@@ -8,9 +8,8 @@ cat /tmp/build-spec.json
 cat /tmp/build-spec.json | jq -r '.spec.strategy.customStrategy.env | map([ "export " + .name, "\"" + .value + "\""] | join("=")) | join(" \n")' > /tmp/env-vars
 
 source /tmp/env-vars
+cat /tmp/env-vars
 echo --
-
-env
 
 if [[ "${SOURCE_REPOSITORY}" != "git://"* ]] && [[ "${SOURCE_REPOSITORY}" != "git@"* ]]; then
   URL="${SOURCE_REPOSITORY}"
