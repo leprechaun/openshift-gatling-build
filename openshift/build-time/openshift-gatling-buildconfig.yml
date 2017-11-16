@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: test-custom-build
+  labels:
+    build: test-custom-build
+spec:
+  triggers: []
+  runPolicy: Serial
+  source:
+    type: Git
+    contextDir: "./"
+    git:
+      uri: https://github.com/leprechaun/openshift-gatling-build.git
+    sourceSecret:
+      name: github-secret
+  strategy:
+    customStrategy:
+      from:
+        kind: "DockerImage"
+        name: "leprechaun/openshift-gatling-build"
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1
+      memory: 1024Mi
