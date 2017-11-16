@@ -1,6 +1,6 @@
 FROM denvazh/gatling
 
 ADD entrypoint.sh /entrypoint.sh
-RUN apk add --update jq
+RUN apk add --update jq git bash
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["bash", "/entrypoint.sh"]

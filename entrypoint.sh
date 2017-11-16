@@ -27,7 +27,7 @@ SOURCE_REPOSITORY="${URL}"
 SOURCE_REF="${SOURCE_REF-master}"
 
 if [ -n "${SOURCE_REF}" ]; then
-  BUILD_DIR=$(mktemp --directory)
+  BUILD_DIR=$(mktemp -d)
   git clone --recursive "${SOURCE_REPOSITORY}" "${BUILD_DIR}"
   if [ $? != 0 ]; then
     echo "Error trying to fetch git source: ${SOURCE_REPOSITORY}"
@@ -41,6 +41,7 @@ if [ -n "${SOURCE_REF}" ]; then
   fi
 
   echo -- source-ref
+  cd ${SOURCE_CONTEXT_DIR}
   ls -lah ./
 
   set -x
