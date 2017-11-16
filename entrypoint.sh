@@ -45,6 +45,8 @@ if [ -n "${SOURCE_REF}" ]; then
 
   set -x
   exec gatling.sh --run-description ${RUN_DESCRIPTION} --simulation ${SIMULATION}
+
+  find ./results
   set +x
 
   popd
