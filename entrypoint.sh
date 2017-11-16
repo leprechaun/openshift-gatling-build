@@ -46,7 +46,6 @@ if [ -n "${SOURCE_REF}" ]; then
   set -x
   gatling.sh --run-description ${RUN_DESCRIPTION} --simulation ${SIMULATION}
 
-  find ./results
   set +x
 
   if [[ -v $GO_SUSERNAME ]]; then
