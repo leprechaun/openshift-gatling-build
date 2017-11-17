@@ -47,8 +47,9 @@ if [ -n "${SOURCE_REF}" ]; then
   gatling.sh --run-description ${RUN_DESCRIPTION} --simulation ${SIMULATION}
 
   cd /opt/gatling/results/
+  cd *
   for file in $(find ./ -type f); do
-    echo curl -k -v -u $GO_USERNAME:$GO_PASSWORD $GO_SERVER_URL/files/$GO_PIPELINE_NAME/$GO_PIPELINE_COUNTER/$GO_STAGE_NAME/$GO_STAGE_COUNTER/$GO_JOB_NAME/$file -F file=@$file -H 'Config:true'
+    curl -k -v -u $GO_USERNAME:$GO_PASSWORD $GO_SERVER_URL/files/$GO_PIPELINE_NAME/$GO_PIPELINE_COUNTER/$GO_STAGE_NAME/$GO_STAGE_COUNTER/$GO_JOB_NAME/$file -F file=@$file -H 'Config:true'
   done
 
   popd
