@@ -43,7 +43,6 @@ if [ -n "${SOURCE_REF}" ]; then
   cd ${SOURCE_CONTEXT_DIR}
   ls -lah ./
 
-  set -x
   gatling.sh --run-description ${RUN_DESCRIPTION} --simulation ${SIMULATION}
 
   cd /opt/gatling/results/
