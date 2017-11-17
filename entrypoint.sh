@@ -27,7 +27,6 @@ SOURCE_REF="${SOURCE_REF-master}"
 
 if [ -n "${SOURCE_REF}" ]; then
   BUILD_DIR=$(mktemp -d)
-  export GATLING_HOME="$BUILD_DIR"
   git clone --recursive "${SOURCE_REPOSITORY}" "${BUILD_DIR}"
   if [ $? != 0 ]; then
     echo "Error trying to fetch git source: ${SOURCE_REPOSITORY}"
