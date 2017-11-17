@@ -47,8 +47,9 @@ if [ -n "${SOURCE_REF}" ]; then
 
   cd /opt/gatling/results/
   cd *
+  set -x
   for file in $(find ./ -type f); do
-    curl -k -v -u $GO_USERNAME:$GO_PASSWORD $GO_SERVER_URL/files/$GO_PIPELINE_NAME/$GO_PIPELINE_COUNTER/$GO_STAGE_NAME/$GO_STAGE_COUNTER/$GO_JOB_NAME/$file -F file=@$file -H 'Confirm:true'
+    curl -k -u $GO_USERNAME:$GO_PASSWORD $GO_SERVER_URL/files/$GO_PIPELINE_NAME/$GO_PIPELINE_COUNTER/$GO_STAGE_NAME/$GO_STAGE_COUNTER/$GO_JOB_NAME/$file -F file=@$file -H 'Confirm:true'
   done
 
   popd
