@@ -46,14 +46,10 @@ if [ -n "${SOURCE_REF}" ]; then
   set -x
   gatling.sh --run-description ${RUN_DESCRIPTION} --simulation ${SIMULATION}
 
-  set +x
-
-  if [[ $UPLOAD_TO_GO = "true" ]]; then
-    cd /opt/gatling/results/
-    for file in $(find ./ -type f -not -iwholename '*.git*'); do
-      curl -k -v -u $GO_USERNAME:$GO_PASSWORD $GO_SERVER_URL/files/$GO_PIPELINE_NAME/$GO_PIPELINE_COUNTER/$GO_STAGE_NAME/$GO_STAGE_COUNTER/$GO_JOB_NAME/$file -F file=@$file -H 'Config:true'
-    done
-  fi
+  cd /opt/gatling/results/
+  for file in $(find ./ -type f); do
+    echo curl -k -v -u $GO_USERNAME:$GO_PASSWORD $GO_SERVER_URL/files/$GO_PIPELINE_NAME/$GO_PIPELINE_COUNTER/$GO_STAGE_NAME/$GO_STAGE_COUNTER/$GO_JOB_NAME/$file -F file=@$file -H 'Config:true'
+  done
 
   popd
 else
