@@ -27,6 +27,7 @@ SOURCE_REF="${SOURCE_REF-master}"
 
 if [ -n "${SOURCE_REF}" ]; then
   BUILD_DIR=$(mktemp -d)
+  export GATLING_HOME="$BUILD_DIR"
   git clone --recursive "${SOURCE_REPOSITORY}" "${BUILD_DIR}"
   if [ $? != 0 ]; then
     echo "Error trying to fetch git source: ${SOURCE_REPOSITORY}"
@@ -48,7 +49,7 @@ if [ -n "${SOURCE_REF}" ]; then
 
   set +x
 
-  if [[ -v $GO_SUSERNAME ]]; then
+  if [[ $UPLOAD_TO_GO = "true" ]]; then
     cd /opt/gatling/results/
     for file in $(find ./ -type f -not -iwholename '*.git*'); do
       curl -k -v -u $GO_USERNAME:$GO_PASSWORD $GO_SERVER_URL/files/$GO_PIPELINE_NAME/$GO_PIPELINE_COUNTER/$GO_STAGE_NAME/$GO_STAGE_COUNTER/$GO_JOB_NAME/$file -F file=@$file -H 'Config:true'
