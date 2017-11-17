@@ -44,6 +44,7 @@ if [ -n "${SOURCE_REF}" ]; then
   ls -lah ./
 
   gatling.sh --run-description ${RUN_DESCRIPTION} --simulation ${SIMULATION}
+  export EXIT_CODE="$?"
 
   cd /opt/gatling/results/
   cd *
@@ -55,3 +56,5 @@ if [ -n "${SOURCE_REF}" ]; then
 else
   echo -- no source-ref
 fi
+
+exit "$EXIT_CODE"
