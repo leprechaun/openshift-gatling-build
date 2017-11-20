@@ -11,6 +11,10 @@ source /tmp/env-vars
 cat /tmp/env-vars
 echo --
 
+if [[ "$DEBUG" = "true" ]]; then
+	set -x
+fi
+
 if [[ "${SOURCE_REPOSITORY}" != "git://"* ]] && [[ "${SOURCE_REPOSITORY}" != "git@"* ]]; then
   URL="${SOURCE_REPOSITORY}"
   if [[ "${URL}" != "http://"* ]] && [[ "${URL}" != "https://"* ]]; then
